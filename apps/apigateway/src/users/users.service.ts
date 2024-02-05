@@ -1,5 +1,5 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
-import { CreateUserDto, PaginationDto, USER_SERVICE_NAME, UsersServiceClient } from '@app/common';
+import { CreateUserDto, PaginationDto, USER_SERVICE_NAME, UserServiceClient } from '@app/common';
 import { UpdateUserDto } from '@app/common';
 import { AUTH_SERVICE } from './constants';
 import { ClientGrpc } from '@nestjs/microservices';
@@ -8,13 +8,13 @@ import { ReplaySubject } from 'rxjs';
 @Injectable()
 export class UsersService implements OnModuleInit{
 
-  private usersService: UsersServiceClient; 
+  private usersService: UserServiceClient; 
 
   constructor(@Inject(AUTH_SERVICE) private client:ClientGrpc){
     
   }
   onModuleInit() {
-    this.usersService = this.client.getService<UsersServiceClient>(USER_SERVICE_NAME);
+    this.usersService = this.client.getService<UserServiceClient>(USER_SERVICE_NAME);
   }
 
 
