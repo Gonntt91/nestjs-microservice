@@ -1,25 +1,25 @@
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from '@nestjs/microservices';
-import { util, configure } from 'protobufjs/minimal';
-import Long from "long";
 import { Observable } from 'rxjs';
 
 export const protobufPackage = 'auth';
 
-export interface Empty {}
+
 
 export interface PaginationDto {
   page: number;
   skip: number;
+}
+export interface UpdateUserDto {
+  id: string;
+  socialMedia: SocialMedia | undefined;
 }
 
 export interface FindOneUserDto {
   id: string;
 }
 
-export interface UpdateUserDto {
-  id: string;
-  SocialMedia: SocialMedia | undefined;
+export interface Empty {
 }
 
 export interface Users {
@@ -48,7 +48,7 @@ export interface SocialMedia {
 
 export const AUTH_PACKAGE_NAME = 'auth';
 
-export interface UserServiceClient {
+export interface UsersServiceClient {
   createUser(request: CreateUserDto): Observable<User>;
 
   findAllUsers(request: Empty): Observable<Users>;
@@ -62,7 +62,7 @@ export interface UserServiceClient {
   queryUsers(request: Observable<PaginationDto>): Observable<Users>;
 }
 
-export interface UserServiceController {
+export interface UsersServiceController {
   createUser(request: CreateUserDto): Promise<User> | Observable<User> | User;
 
   findAllUsers(request: Empty): Promise<Users> | Observable<Users> | Users;
@@ -76,7 +76,7 @@ export interface UserServiceController {
   queryUsers(request: Observable<PaginationDto>): Observable<Users>;
 }
 
-export function UserServiceControllerMethods() {
+export function UsersServiceControllerMethods() {
   return function (constructor: Function) {
     const grpcMethods: string[] = [
       'createUser',
@@ -90,7 +90,7 @@ export function UserServiceControllerMethods() {
         constructor.prototype,
         method,
       );
-      GrpcMethod('UserService', method)(
+      GrpcMethod('UsersService', method)(
         constructor.prototype[method],
         method,
         descriptor,
@@ -102,7 +102,7 @@ export function UserServiceControllerMethods() {
         constructor.prototype,
         method,
       );
-      GrpcStreamMethod('UserService', method)(
+      GrpcStreamMethod('UsersService', method)(
         constructor.prototype[method],
         method,
         descriptor,
@@ -111,11 +111,4 @@ export function UserServiceControllerMethods() {
   };
 }
 
-export const USER_SERVICE_NAME = 'UserService';
-
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-  util.Long = Long as any;
-  configure();
-}
+export const USERS_SERVICE_NAME = 'UsersService';

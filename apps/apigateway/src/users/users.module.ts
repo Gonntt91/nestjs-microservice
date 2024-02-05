@@ -14,10 +14,10 @@ import { join } from 'path';
         transport: Transport.GRPC,
         options: {
           package: AUTH_PACKAGE_NAME,
-          protoPath: join(__dirname, '../auth.proto')
-        }
-      }
-    ])
+          protoPath: join(__dirname, '../auth.proto'),
+        },
+      },
+    ]),
   ],
   controllers: [UsersController],
   providers: [UsersService],

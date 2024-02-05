@@ -4,8 +4,8 @@ import { randomUUID } from 'crypto';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable()
-export class UsersService implements OnModuleInit{
-  private readonly users: User[]= [];
+export class UsersService implements OnModuleInit {
+  private readonly users: User[] = [];
 
 
   onModuleInit() {
