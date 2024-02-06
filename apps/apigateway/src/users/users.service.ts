@@ -15,6 +15,7 @@ export class UsersService implements OnModuleInit {
   private usersService: UsersServiceClient; 
 
   constructor(@Inject(AUTH_SERVICE) private client: ClientGrpc) {}
+  
   onModuleInit() {
     this.usersService = this.client.getService<UsersServiceClient>(USERS_SERVICE_NAME);
   }

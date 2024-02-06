@@ -3,9 +3,11 @@ import { MessagePattern, Payload } from '@nestjs/microservices';
 import { UsersService } from './users.service';
 import { 
     CreateUserDto,
+    Empty,
     FindOneUserDto, 
     PaginationDto, 
     UpdateUserDto, 
+    Users, 
     UsersServiceController, 
     UsersServiceControllerMethods, 
 } from '@app/common';
