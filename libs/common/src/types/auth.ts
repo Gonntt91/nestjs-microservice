@@ -22,6 +22,15 @@ export interface FindOneUserDto {
 export interface Empty {
 }
 
+export interface User {
+  id: string;
+  username: string;
+  password: string;
+  age: number;
+  subscribed: boolean;
+  socialMedia: SocialMedia | undefined;
+}
+
 export interface Users {
   users: User[];
 }
@@ -32,14 +41,6 @@ export interface CreateUserDto {
   age: number;
 }
 
-export interface User {
-  id: string;
-  username: string;
-  password: string;
-  age: number;
-  subscribed: boolean;
-  socialMedia: SocialMedia | undefined;
-}
 
 export interface SocialMedia {
   twitterUri?: string | undefined;
@@ -67,8 +68,6 @@ export interface UsersServiceController {
 
   findAllUsers(request: Empty): Promise<Users> | Observable<Users> | Users;
   
-  findAllUsers(): Promise<Users> | Observable<Users> | Users;
-
   findOneUser(request: FindOneUserDto): Promise<User> | Observable<User> | User;
 
   updateUser(request: UpdateUserDto): Promise<User> | Observable<User> | User;
@@ -83,7 +82,6 @@ export function UsersServiceControllerMethods() {
     const grpcMethods: string[] = [
       "createUser",
       "findAllUsers",
-      "FindAllUsers",
       "findOneUser",
       "updateUser",
       "removeUser",

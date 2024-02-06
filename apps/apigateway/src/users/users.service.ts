@@ -14,10 +14,13 @@ import { ReplaySubject } from 'rxjs';
 export class UsersService implements OnModuleInit {
   private usersService: UsersServiceClient; 
 
-  constructor(@Inject(AUTH_SERVICE) private client: ClientGrpc) {}
+  constructor(@Inject(AUTH_SERVICE) private client: ClientGrpc) {
+  }
   
   onModuleInit() {
     this.usersService = this.client.getService<UsersServiceClient>(USERS_SERVICE_NAME);
+
+    console.log('usersService in apigateway ---------------: ', this.usersService.findAllUsers)
   }
 
 
@@ -26,6 +29,7 @@ export class UsersService implements OnModuleInit {
   }
 
   findAll() {
+    console.log('usersService in 2222 ---------------: ', this.usersService.findAllUsers)
     return this.usersService.findAllUsers({});
   }
 

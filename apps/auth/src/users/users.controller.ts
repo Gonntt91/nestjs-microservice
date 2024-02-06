@@ -17,7 +17,9 @@ import { Observable } from 'rxjs';
 @UsersServiceControllerMethods()
 export class UsersController implements UsersServiceController {
   
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) {
+    console.log("usersService in auth: ", this.usersService)
+  }
 
 
   createUser(createUserDto: CreateUserDto) {
